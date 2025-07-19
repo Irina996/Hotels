@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-table-address" author="trigrutson">
+        <createTable tableName="address">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="house_number" type="int"/>
+            <column name="street" type="varchar(120)"/>
+            <column name="city" type="varchar(120)"/>
+            <column name="country" type="varchar(120)"/>
+            <column name="post_code" type="varchar(10)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-contacts" author="trigrutson">
+        <createTable tableName="contacts">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="phone" type="varchar(15)"/>
+            <column name="email" type="varchar(62)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-arrival-time" author="trigrutson">
+        <createTable tableName="arrival_time">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="check_in" type="varchar(5)"/>
+            <column name="check_out" type="varchar(5)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-amenity" author="trigrutson">
+        <createTable tableName="amenity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="amenity_name" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-hotels" author="trigrutson">
+        <createTable tableName="hotel">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="hotel_name" type="varchar(64)"/>
+            <column name="description" type="varchar(max)"/>
+            <column name="brand" type="varchar(64)"/>
+            <column name="address_id" type="bigint">
+                <constraints foreignKeyName="hotel_address_id_hotel_id" references="address(id)"/>
+            </column>
+            <column name="contacts_id" type="bigint">
+                <constraints foreignKeyName="hotel_contacts_id_hotel_id" references="contacts(id)"/>
+            </column>
+            <column name="arrival_time_id" type="bigint">
+                <constraints foreignKeyName="hotel_arrival_time_id_hotel_id" references="arrival_time(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-hotel-amenities" author="trigrutson">
+        <createTable tableName="hotels_amenities">
+            <column name="hotel_id" type="bigint">
+                <constraints foreignKeyName="hotel_amenities_id_hotel_id" references="hotel(id)"/>
+            </column>
+            <column name="amenity_id" type="bigint">
+                <constraints foreignKeyName="hotel_amenities_id_amenity_id" references="amenity(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
