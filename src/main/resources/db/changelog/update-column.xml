@@ -4,9 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <include file="create-table.xml" relativeToChangelogFile="true"/>
-    <include file="update-column.xml" relativeToChangelogFile="true"/>
-    <include file="add-data/add-amenities.xml" relativeToChangelogFile="true"/>
-    <include file="add-data/add-hotel1.xml" relativeToChangelogFile="true"/>
-    
+<changeSet id="modify-column-type" author="trigrutson">
+    <modifyDataType tableName="contacts" columnName="phone" newDataType="varchar(30)"/>
+    <modifyDataType tableName="arrival_time" columnName="check_in" newDataType="time"/>
+    <modifyDataType tableName="arrival_time" columnName="check_out" newDataType="time"/>
+</changeSet>
+
 </databaseChangeLog>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+<changeSet id="insert-hotels" author="trigrutson">
+    <insert tableName="address">
+        <column name="house_number" value="9"/>
+        <column name="street" value="Pobediteley Avenue"/>
+        <column name="city" value="Minsk"/>
+        <column name="country" value="Belarus"/>
+        <column name="post_code" value="220004"/>
+    </insert>
+    <insert tableName="arrival_time">
+        <column name="check_in" value="14:00"/>
+        <column name="check_out" value="12:00"/>
+    </insert>
+    <insert tableName="contacts">
+        <column name="phone" value="+375(17)3098000"/>
+        <column name="email" value="doubletreeminsk.info@hilton.com"/>
+    </insert>
+    <insert tableName="hotel">
+        <column name="hotel_name" value="DoubleTree by Hilton Minsk"/>
+        <column name="description" value="The DoubleTree by Hilton Hotel Minsk offers 193 luxurious rooms in the Belorussian capital and stunning views of Minsk city from the hotel's 20th floor ..."/>
+        <column name="brand" value="Hilton"/>
+        <column name="address_id" value="1"/>
+        <column name="contacts_id" value="1"/>
+        <column name="arrival_time_id" value="1"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="1"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="2"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="3"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="4"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="5"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="6"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="7"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="8"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="9"/>
+    </insert>
+    <insert tableName="hotels_amenities">
+        <column name="hotel_id" value="1"/>
+            <column name="amenity_id" value="10"/>
+    </insert>
+</changeSet>
+</databaseChangeLog>

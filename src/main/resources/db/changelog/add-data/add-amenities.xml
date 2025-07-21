@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+<changeSet id="insert-amenities" author="trigrutson">
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Free parking"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Free WiFi"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Non-smoking rooms"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Concierge"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="On-site restaurant"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Fitness center"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Pet-friendly rooms"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Room service"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Business center"/>
+    </insert>
+    <insert tableName="amenity">
+        <column name="amenity_name" value="Meeting rooms"/>
+    </insert>
+</changeSet>
+</databaseChangeLog>
