@@ -66,19 +66,19 @@ public class HotelService {
         return resultMap;
     }
 
-    public Map<String, Long> getBrandHistogram() {
-        return convertToMap(hotelRepository.findBrandHistogram());
-    }
-
-    public Map<String, Long> getCityHistogram() {
-        return convertToMap(hotelRepository.findCityHistogram());
-    }
-
-    public Map<String, Long> getCountryHistogram() {
-        return convertToMap(hotelRepository.findCountryHistogram());
-    }
-    public Map<String, Long> getAmenitiesHistogram() {
-        return convertToMap(hotelRepository.findAmenitiesHistogram());
+    public Map<String, Long> getHistogramByParameter(String parameter) {
+        switch (parameter) {
+            case "brand":
+                return convertToMap(hotelRepository.findBrandHistogram());
+            case "city":
+                return convertToMap(hotelRepository.findCityHistogram());
+            case "country":
+                return convertToMap(hotelRepository.findCountryHistogram());
+            case "amenities":
+                return convertToMap(hotelRepository.findAmenitiesHistogram());
+            default:
+                throw new IllegalArgumentException("Неподдерживаемый параметр: " + parameter);
+        }
     }
 
     public List<HotelBriefDTO> getHotelByParameter(String name, 

@@ -60,20 +60,7 @@ class HotelsController {
     
     @GetMapping("/histogram/{param}")
     public Map<String, Long> getHistogram(@PathVariable String param) {
-
-        switch (param) {
-            case "brand":
-                return hotelService.getBrandHistogram();
-            case "city":
-                return hotelService.getCityHistogram();
-            case "country":
-                return hotelService.getCountryHistogram();
-            case "amenities":
-                return hotelService.getAmenitiesHistogram();
-            default:
-                return null;
-        }
+        return hotelService.getHistogramByParameter(param);
     }
-    
     
 }
