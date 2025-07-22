@@ -43,7 +43,7 @@ class HotelsController {
         @RequestParam(required = false) String brand, 
         @RequestParam(required = false) String city,
         @RequestParam(required = false) String country,
-        @RequestParam(required = false) String amenities) 
+        @RequestParam(required = false) List<String> amenities) 
     {
         return hotelService.getHotelByParameter(name, brand, city, country, amenities);
     }

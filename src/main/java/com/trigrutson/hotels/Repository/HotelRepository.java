@@ -43,22 +43,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
             FROM Hotel h 
             LEFT JOIN Address a ON h.address.id = a.id
             LEFT JOIN Contacts c ON h.contacts.id = c.id
-            LEFT JOIN h.amenities am
             WHERE h.id = :id
-            GROUP BY h.id
         """
     )
     Optional<HotelExtendedDTO> findHotelInfoById(long id);
-
-    @Query(
-        """
-            SELECT amenity.amenityName
-            FROM Amenity amenity
-            LEFT JOIN amenity.hotels ha
-            WHERE ha.id = :id
-        """
-    )
-    List<String> findHotelAmienitiesById(long id);
 
     @Query(
         """
@@ -117,11 +105,17 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                 AND (:brand IS NULL OR LOWER(h.brand) = LOWER(:brand))
                 AND (:city IS NULL OR LOWER(a.city) = LOWER(:city))
                 AND (:country IS NULL OR LOWER(a.country) = LOWER(:country))
-                AND (:amenity IS NULL OR LOWER(am.amenityName) = LOWER(:amenity))
+                AND (:amenities IS NULL OR (
+                    SELECT COUNT(DISTINCT am2.amenityName)
+                    FROM Hotel h2
+                    JOIN h2.amenities am2
+                    WHERE h2.id = h.id AND am2.amenityName IN :amenities
+                ) = :amenitiesSize)
             GROUP BY h.id
             
         """
     )
-    public List<HotelBriefDTO> findHotelByParameter(String name, String brand, String city, String country, String amenity);
+    public List<HotelBriefDTO> findHotelByParameter(String name, String brand, String city, 
+        String country, List<String> amenities, int amenitiesSize);
 }
 

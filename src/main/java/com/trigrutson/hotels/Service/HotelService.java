@@ -54,7 +54,7 @@ public class HotelService {
 
     public Optional<HotelExtendedDTO> getHotelById(long id) {
         var h = hotelRepository.findHotelInfoById(id);
-        h.ifPresent(x -> x.setAmenities(hotelRepository.findHotelAmienitiesById(id)));
+        h.ifPresent(x -> x.setAmenities(amenityRepository.findAmenityNamesByHotelId(id)));
         return h;
     }
 
@@ -82,7 +82,8 @@ public class HotelService {
     }
 
     public List<HotelBriefDTO> getHotelByParameter(String name, 
-        String brand, String city, String country, String amenities) {
-        return hotelRepository.findHotelByParameter(name, brand, city, country, amenities);
+        String brand, String city, String country, List<String> amenities) {
+        return hotelRepository.findHotelByParameter(name, brand, city, country, 
+            amenities, (amenities != null) ? amenities.size() : 0);
     }
 }
