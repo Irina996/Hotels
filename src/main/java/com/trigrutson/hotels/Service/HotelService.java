@@ -47,7 +47,9 @@ public class HotelService {
                 am = new Amenity();
                 am.setAmenityName(name);
             }
-            hotel.getAmenities().add(am);
+            if (!hotel.getAmenities().contains(am)) {
+                hotel.getAmenities().add(am);
+            }
         }
         return createHotel(hotel);
     }

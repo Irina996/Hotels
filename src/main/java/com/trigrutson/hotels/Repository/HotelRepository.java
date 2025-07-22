@@ -15,16 +15,16 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
     @Query(
         """
-            SELECT 
+            SELECT new com.trigrutson.hotels.Model.HotelBriefDTO(
                 h.id, 
                 h.name, 
                 h.description, 
                 concat(a.houseNumber, ' ', a.street, ', ', a.city, ', ', a.postCode, ', ', a.country),
                 c.phone
-            
+            )
             FROM Hotel h 
-            LEFT JOIN Address a ON h.address.id = a.id
-            LEFT JOIN Contacts c ON h.contacts.id = c.id
+            LEFT JOIN h.address a
+            LEFT JOIN h.contacts c
         """
     )
     List<HotelBriefDTO> findAllHotelInfo();
@@ -41,8 +41,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                 new com.trigrutson.hotels.Model.ContactsDTO(c.phone, c.email)
             )
             FROM Hotel h 
-            LEFT JOIN Address a ON h.address.id = a.id
-            LEFT JOIN Contacts c ON h.contacts.id = c.id
+            LEFT JOIN h.address a
+            LEFT JOIN h.contacts c
             WHERE h.id = :id
         """
     )
@@ -98,8 +98,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                 concat(a.houseNumber, ' ', a.street, ', ', a.city, ', ', a.postCode, ', ', a.country),
                 c.phone)
             FROM Hotel h 
-            LEFT JOIN Address a ON h.address.id = a.id
-            LEFT JOIN Contacts c ON h.contacts.id = c.id
+            LEFT JOIN h.address a
+            LEFT JOIN h.contacts c
             LEFT JOIN h.amenities am
             WHERE (:name IS NULL OR LOWER(h.name) = LOWER(:name))
                 AND (:brand IS NULL OR LOWER(h.brand) = LOWER(:brand))
